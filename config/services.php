@@ -1,0 +1,90 @@
+
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for a number of services to locate their credentials.
+    |
+    */
+
+    'postmark' => [
+        'key' => env('POSTMARK_API_KEY'),
+    ],
+
+    'resend' => [
+        'key' => env('RESEND_API_KEY'),
+    ],
+
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
+
+    'slack' => [
+        'notifications' => [
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
+            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google OAuth (account linking only)
+    |--------------------------------------------------------------------------
+    |
+    | Google Sign-In is NOT a login method. This credential set is used only
+    | by the account-linking flow started from Settings by an already
+    | authenticated user who has completed 2FA. Requires internet access;
+    | the local username/password + 2FA login works fully offline.
+    |
+    */
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Gotenberg Document Conversion
+    |--------------------------------------------------------------------------
+    |
+    | Local/self-hosted Gotenberg API used by the Record Management System
+    | to convert generated DOCX documents into printable PDF files.
+    |
+    */
+
+    'gotenberg' => [
+        'url' => env(
+            'GOTENBERG_URL',
+            'http://127.0.0.1:3000'
+        ),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Document Output Format
+    |--------------------------------------------------------------------------
+    |
+    | Local development uses PDF through Gotenberg.
+    | Production uses DOCX download to avoid requiring a hosted converter.
+    |
+    */
+
+    'documents' => [
+        'output_format' => env(
+            'DOCUMENT_OUTPUT_FORMAT',
+            env('APP_ENV') === 'production' ? 'docx' : 'pdf'
+        ),
+    ],
+
+];
